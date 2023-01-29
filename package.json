@@ -1,0 +1,46 @@
+{
+  "name": "trading212-unofficial-api",
+  "version": "1.0.0",
+  "description": "An unofficial trading212 API written in typescript.",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "scripts": {
+    "build": "yarn build:esm && yarn build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "lint": "eslint \"{**/*,*}.{js,ts}\"",
+    "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts}\"",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run prettier && npm run lint"
+
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],  
+  "keywords": [
+    "api",
+    "trading212",
+    "financial data",
+    "stocks",
+    "candlesticks",
+    "prices"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neaguio/trading212-unofficial-api.git"
+  },
+  "author": "neaguio",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.4"
+  }
+}
