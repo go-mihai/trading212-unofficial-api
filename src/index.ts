@@ -1,21 +1,16 @@
-import getCompanies from "./companies";
-
+import getCandles from './candles'
+import getCompanies from './companies'
+import { InputGetCandles } from './types'
 
 class Trading212 {
-  async getCompanies (){
-    return await getCompanies();
+  async getCompanies() {
+    return await getCompanies()
   }
-  async getPokemon (){
-    const data = await fetch('https://pokeapi.co/api/v2/pokemon/ditto').then(res => res.json()).catch((err) => err);
-    return data;
+  async getCandles(input : InputGetCandles[] | InputGetCandles){
+    return await getCandles(input);
   }
 }
 
-const trading212 = new Trading212();
+const trading212 = new Trading212()
 
-export default trading212;
-
-
-
-
- 
+export default trading212
