@@ -6,8 +6,8 @@ class Trading212 {
   async getCompanies() {
     return await getCompanies()
   }
-  async getCandles(input : InputGetCandles[] | InputGetCandles){
-    return await getCandles(input);
+  async getCandles(input: InputGetCandles[] | InputGetCandles) {
+    return await getCandles(input)
   }
 }
 
