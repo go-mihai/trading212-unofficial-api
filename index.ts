@@ -1,3 +1,2 @@
-import Trading212API from "./src";
-
-export default Trading212API;
+import Trading212API from './src'
+export default Trading212API
