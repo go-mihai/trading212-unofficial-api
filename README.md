@@ -7,8 +7,10 @@
 
 | Name      | Function | Status     |
 | :---        |    :----:   |          ---: |
-| Candles      |   getCandles     | Finished   |
-| Companies/Tickers   | getCompanies        | Finished      |
+| Companies/Tickers   | .getCompanies        | Finished      |
+| Candles      |   .getCandles     | Finished   |
+| Parse Candles | .parse() | To do |
+
 
 
 
@@ -52,7 +54,7 @@ export default async function Candles(){
     // ...
 }
 ```
-
+--- 
 #####  Disclaimer
 
 This code is work in progress. I am in no way affiliated with trading212 and trading212 does not endorse this project.
