@@ -1,19 +1,20 @@
 ### Unofficial Trading212 API - Data Fetching
 <img src="/Trading212-logo.webp">
 
-### How to use ?
 
-### Docs
+
+### Status
+
+
 
 | Name      | Function | Status     |
 | :---        |    :----:   |          ---: |
 | Companies/Tickers   | .getCompanies        | Finished      |
 | Candles      |   .getCandles     | Finished   |
-| Parse Candles | .parse() | To do |
+| Current Price      |   .getCurrentPrice     | Finished   |
 
 
-
-
+### How to use ?
 
 #### Companies/Tickers API
 
@@ -54,6 +55,33 @@ export default async function Candles(){
     // ...
 }
 ```
+
+
+#### Current Price API
+
+```js
+import trading212 from 'trading212-unofficial-api';
+
+export default async function CurrentPricesAPI(){
+    // getCurrentPrices accept an array of inputs 
+    const data = await trading212.getCurrentPrices([{
+        period : 'FIFTEEN_MINUTES',
+        ticker :  "EURUSD",
+        showPreviousPrice : false
+    },{
+        period: 'THIRTY_MINUTES',
+        ticker :  "USDJPY",
+    }])
+    // or only a single input object.
+    const data2 = await trading212.getCurrentPrices({
+        period: 'THIRTY_MINUTES',
+        ticker :  "USDJPY",
+    })
+    // ...
+    // ...
+}
+```
+
 --- 
 #####  Disclaimer
 
