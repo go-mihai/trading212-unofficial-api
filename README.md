@@ -12,6 +12,8 @@
 | Companies/Tickers   | .getCompanies        | Finished      |
 | Candles      |   .getCandles     | Finished   |
 | Current Price      |   .getCurrentPrice     | Finished   |
+| Weekly Candles      |   .getWeeklyCandles     | In Progress   |
+| Monthly Candles      |   .getMonthlyCandles     | To Do   |
 
 
 ### How to use ?
