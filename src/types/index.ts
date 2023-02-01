@@ -29,6 +29,6 @@ export interface CurrentCandle {
 }
 
 export interface CurrentWeeklyCandles {
-  period : TIME_PERIOD
-  ticker : string[]
+  period: TIME_PERIOD
+  ticker: string[]
 }

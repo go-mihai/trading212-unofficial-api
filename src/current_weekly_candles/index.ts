@@ -1,24 +1,22 @@
-import getFirstDayOfTheWeek from '../helpers/getFirstDayOfTheWeek';
-import getSecondsByPeriodType from '../helpers/getSecondsByPeriodType';
+import getFirstDayOfTheWeek from '../helpers/getFirstDayOfTheWeek'
+import getSecondsByPeriodType from '../helpers/getSecondsByPeriodType'
 import { InputGetCandles, CurrentWeeklyCandles } from '../types'
 
-export default async function getCurrentWeeklyCandles(input : CurrentWeeklyCandles ) {
-  
-  const firstDayOfTheWeek = getFirstDayOfTheWeek(new Date());
-  const seconds = getSecondsByPeriodType(input.period);
-  if(seconds === 0) throw new Error("Period type is incorrect.");
+export default async function getCurrentWeeklyCandles(input: CurrentWeeklyCandles) {
+  const firstDayOfTheWeek = getFirstDayOfTheWeek(new Date())
+  const seconds = getSecondsByPeriodType(input.period)
+  if (seconds === 0) throw new Error('Period type is incorrect.')
 
-  const timeDifference = Date.now() / 1000 - firstDayOfTheWeek.getTime() / 1000;
+  const timeDifference = Date.now() / 1000 - firstDayOfTheWeek.getTime() / 1000
   // TODO : If size is 0, should we return the last month candle/weekly candle?
-  const size = Math.floor(timeDifference / seconds) || 1;
-  
+  const size = Math.floor(timeDifference / seconds) || 1
 
-  const candles : InputGetCandles[] = input.ticker.map(tickerName => {
+  const candles: InputGetCandles[] = input.ticker.map((tickerName) => {
     return {
       period: input.period,
       size,
       ticker: tickerName,
-      useAskPrice: false
+      useAskPrice: false,
     }
   })
 
