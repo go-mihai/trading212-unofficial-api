@@ -1,10 +1,10 @@
-import { CurrentPrices, InputGetCandles } from '../types'
+import { CurrentCandle, InputGetCandles } from '../types'
 
-export default async function getCurrentPrices(input: CurrentPrices[] | CurrentPrices) {
+export default async function getCurrentCandle(input: CurrentCandle[] | CurrentCandle) {
   // Check if there are multiple inputs.
 
   const candles = Array.isArray(input) ? input : [input]
-  const newCandlesInput = candles.map((el: CurrentPrices): InputGetCandles => {
+  const newCandlesInput = candles.map((el: CurrentCandle): InputGetCandles => {
     const { showPreviousPrice, ...rest } = el
     const size = showPreviousPrice ? 2 : 1
     return { ...rest, size, useAskPrice: false }

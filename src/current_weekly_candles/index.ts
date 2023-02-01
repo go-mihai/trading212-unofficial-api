@@ -1,8 +1,8 @@
 import getFirstDayOfTheWeek from '../helpers/getFirstDayOfTheWeek';
 import getSecondsByPeriodType from '../helpers/getSecondsByPeriodType';
-import { InputGetCandles, WeeklyPrice } from '../types'
+import { InputGetCandles, CurrentWeeklyCandles } from '../types'
 
-export default async function getWeeklyCandles(input : WeeklyPrice ) {
+export default async function getCurrentWeeklyCandles(input : CurrentWeeklyCandles ) {
   
   const firstDayOfTheWeek = getFirstDayOfTheWeek(new Date());
   const seconds = getSecondsByPeriodType(input.period);
