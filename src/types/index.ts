@@ -27,3 +27,8 @@ export interface CurrentPrices {
   ticker: string
   showPreviousPrice?: boolean
 }
+
+export interface WeeklyPrice {
+  period : TIME_PERIOD
+  ticker : string[]
+}

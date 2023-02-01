@@ -1,7 +1,7 @@
 import getCandles from './candles'
 import getCompanies from './companies'
 import getCurrentPrices from './current_prices'
-import { CurrentPrices, InputGetCandles } from './types'
+import { CurrentPrices, InputGetCandles, WeeklyPrice } from './types'
 import getWeeklyCandles from './weekly_candles'
 
 class Trading212 {
@@ -14,7 +14,7 @@ class Trading212 {
   async getCurrentPrices(input: CurrentPrices[] | CurrentPrices) {
     return await getCurrentPrices(input)
   }
-  async getWeeklyCandles(input: InputGetCandles[] | InputGetCandles) {
+  async getWeeklyCandles(input: WeeklyPrice) {
     return await getWeeklyCandles(input)
   }
 }
