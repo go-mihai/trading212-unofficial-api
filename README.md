@@ -7,13 +7,13 @@
 
 
 
-| Name      | Function | Status     |
-| :---        |    :----:   |          ---: |
-| Companies/Tickers   | .getCompanies        | Finished      |
+| Name      | Function | Status     | Tests |
+| :---        |    :----:   |          ---: |           ---: |
+| Companies/Tickers   | .getCompanies        | Finished      | Finished |
 | Current Price      |   .getCurrentPrice     | To Do   |
 | Current Candle     |   .getCurrentCandle     | Finished   |
 | Candles      |   .getCandles     | Finished   |
-| Current Weekly Candles      |   .getCurrentWeeklyCandles     | Finished   |
+| Current Weekly Candles      |   .getCurrentWeeklyCandles     | Finished   | Finished |
 
 
 ### How to use ?
