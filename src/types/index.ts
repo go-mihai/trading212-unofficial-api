@@ -22,8 +22,13 @@ export interface InputGetCandles {
   useAskPrice: boolean
 }
 
-export interface CurrentPrices {
+export interface CurrentCandle {
   period: TIME_PERIOD
   ticker: string
   showPreviousPrice?: boolean
+}
+
+export interface CurrentWeeklyCandles {
+  period: TIME_PERIOD
+  ticker: string[]
 }
