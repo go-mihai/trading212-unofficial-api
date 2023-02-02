@@ -16,12 +16,12 @@ describe('trading212.getWeeklyCandles', () => {
 
   it('should throw an error if an invalid period is provided', async () => {
     try {
-      const data = await trading212.getCurrentWeeklyCandles({
+      await trading212.getCurrentWeeklyCandles({
         // @ts-ignore: test-case
         period: 'INVALID_PERIOD',
         ticker: ['EURUSD'],
       })
-      console.log(data)
+      fail()
     } catch (error: any) {
       expect(error.message).toBe('Invalid period: INVALID_PERIOD')
     }
