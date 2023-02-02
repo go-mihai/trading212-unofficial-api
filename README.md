@@ -14,6 +14,7 @@
 | Current Candle     |   .getCurrentCandle     | Finished   |
 | Candles      |   .getCandles     | Finished   |
 | Current Weekly Candles      |   .getCurrentWeeklyCandles     | Finished   | Finished |
+| Transform data to SVG API      |   .toSvg()     | To Do  |  |
 
 
 ### How to use ?
