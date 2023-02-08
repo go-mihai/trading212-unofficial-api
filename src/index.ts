@@ -3,6 +3,7 @@ import getCompanies from './companies'
 import getCurrentCandle from './current_candle'
 import { CurrentCandle, CurrentWeeklyCandles, InputGetCandles } from './types'
 import getCurrentWeeklyCandles from './current_weekly_candles'
+import toSvg from './to_svg'
 
 class Trading212 {
   async getCompanies() {
@@ -16,6 +17,9 @@ class Trading212 {
   }
   async getCurrentWeeklyCandles(input: CurrentWeeklyCandles) {
     return await getCurrentWeeklyCandles(input)
+  }
+  async toSvg() {
+    return await toSvg()
   }
 }
 
