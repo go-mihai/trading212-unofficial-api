@@ -1,6 +1,6 @@
 import { CandlesticksDataset, SvgOptions } from '../types'
 
-export default function toSvg(data: CandlesticksDataset, options : SvgOptions) {
+export default function toSvg(data: CandlesticksDataset, options: SvgOptions) {
   const SVG_WIDTH = 324
   const SVG_HEIGHT = 180
 
@@ -26,7 +26,7 @@ export default function toSvg(data: CandlesticksDataset, options : SvgOptions) {
   const pnlNominal = data[data.length - 1][4] - data[0][4]
   const startValue = data[0][4]
   const pnlPercentage = (pnlNominal / startValue) * 100
-  const title = options.title;
+  const title = options.title
 
   return (
     `<svg width="${SVG_WIDTH}" height="${SVG_HEIGHT}" style="border:1px solid gray">` +

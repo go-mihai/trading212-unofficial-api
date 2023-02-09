@@ -1,7 +1,7 @@
 import getCandles from './candles'
 import getCompanies from './companies'
 import getCurrentCandle from './current_candle'
-import { CurrentWeeklyCandles, SvgOptions, Ticker, TIME_PERIOD } from './types'
+import { SvgOptions, Ticker, TIME_PERIOD } from './types'
 import getCurrentWeeklyCandles from './current_weekly_candles'
 import toSvg from './to_svg'
 
@@ -55,24 +55,24 @@ class Trading212 {
     }))
     return this
   }
-  currentCandle(showPreviousPrice : boolean = false) {
-    this.methodName = getCurrentCandle;
-    const {period} = this;
+  currentCandle(showPreviousPrice: boolean = false) {
+    this.methodName = getCurrentCandle
+    const { period } = this
     this.options = this.tickers.map((ticker) => ({
       period,
       ticker,
-      showPreviousPrice
+      showPreviousPrice,
     }))
-    return this;
+    return this
   }
-  currentWeekCandles(){
-    this.methodName = getCurrentWeeklyCandles;
-    const {period} = this;
+  currentWeekCandles() {
+    this.methodName = getCurrentWeeklyCandles
+    const { period } = this
     this.options = this.tickers.map((ticker) => ({
       period,
       ticker,
     }))
-    return this;
+    return this
   }
   select() {
     // TODO : add Error message
