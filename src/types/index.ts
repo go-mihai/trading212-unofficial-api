@@ -33,4 +33,6 @@ export interface CurrentWeeklyCandles {
   ticker: string[]
 }
 
-export type Ticker = string | string[];
+export type Ticker = string | string[]
+
+export type CandlesticksDataset = [number, number, number, number, number, number][]
