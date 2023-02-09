@@ -36,3 +36,9 @@ export interface CurrentWeeklyCandles {
 export type Ticker = string | string[]
 
 export type CandlesticksDataset = [number, number, number, number, number, number][]
+
+export type SvgOptions = {
+  title: boolean
+  maxMin: boolean
+  labelPnl: boolean
+}

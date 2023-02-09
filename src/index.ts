@@ -1,7 +1,7 @@
 import getCandles from './candles'
 import getCompanies from './companies'
 import getCurrentCandle from './current_candle'
-import { CurrentCandle, CurrentWeeklyCandles, InputGetCandles, Ticker, TIME_PERIOD } from './types'
+import { CurrentCandle, CurrentWeeklyCandles, InputGetCandles, SvgOptions, Ticker, TIME_PERIOD } from './types'
 import getCurrentWeeklyCandles from './current_weekly_candles'
 import toSvg from './to_svg'
 
@@ -37,7 +37,7 @@ class Trading212 {
       return this
     }
     this.size = size
-    return this;
+    return this
   }
   companies() {
     this.methodName = getCompanies
@@ -68,7 +68,12 @@ class Trading212 {
     const result: string[] = []
     this.data.forEach((element: any) => {
       try {
-        const svgString: string = toSvg(element?.response?.candles)
+        const _svgOptions: SvgOptions = {
+          title: element?.request.ticker,
+          labelPnl: true,
+          maxMin: false,
+        }
+        const svgString: string = toSvg(element?.response?.candles, _svgOptions)
         result.push(svgString)
       } catch (err) {
         console.error(err)

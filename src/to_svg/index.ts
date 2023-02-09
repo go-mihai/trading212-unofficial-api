@@ -1,6 +1,6 @@
-import { CandlesticksDataset } from '../types'
+import { CandlesticksDataset, SvgOptions } from '../types'
 
-export default function toSvg(data: CandlesticksDataset) {
+export default function toSvg(data: CandlesticksDataset, options : SvgOptions) {
   const SVG_WIDTH = 324
   const SVG_HEIGHT = 180
 
@@ -26,8 +26,8 @@ export default function toSvg(data: CandlesticksDataset) {
   const pnlNominal = data[data.length - 1][4] - data[0][4]
   const startValue = data[0][4]
   const pnlPercentage = (pnlNominal / startValue) * 100
-
-  const title = 'TITLE'
+  console.log(pnlPercentage);
+  const title = options.title;
 
   return (
     `<svg width="${SVG_WIDTH}" height="${SVG_HEIGHT}" style="border:1px solid gray">` +
@@ -40,8 +40,7 @@ export default function toSvg(data: CandlesticksDataset) {
     }" y="${yTransform(maximumPrice) - 2}"> max ${yMax.toFixed(4)}</text></g>` +
     `<line x1="${xMin}" y1="${yTransform(minimumPrice)}" x2="${xMax}" y2="${yTransform(
       minimumPrice,
-    )}" stroke="#ddd" />` +
-    `<line x1="${xMin}" y1="${yTransform(maximumPrice)}" x2="${xMax}" y2="${yTransform(
+    )}" stroke="#ddd" /><line x1="${xMin}" y1="${yTransform(maximumPrice)}" x2="${xMax}" y2="${yTransform(
       maximumPrice,
     )}" stroke="#ddd" />` +
     `${data
@@ -68,9 +67,9 @@ export default function toSvg(data: CandlesticksDataset) {
       .join('')}` +
     `</g>` +
     `<text style="font-family:Arial;font-weight:bold; font-size:24px" x="4" y="24" fill="#909090">${title}</text>` +
-    `<text style="font-family:Arial;font-weight:600;font-size:13px" x="${(xMax + xMin) / 2}" y="10" fill="${
-      pnlPercentage ? '#2ea82e' : '#ca0c0c'
-    }">${pnlNominal > 0 ? '+' : '-'}${pnlNominal.toFixed(2)} (${pnlPercentage.toFixed(2)}%)</text>` +
+    `<text style="font-family:Arial;font-weight:600;font-size:13px" x="4" y="48" fill="${
+      pnlPercentage > 0 ? '#2ea82e' : '#ca0c0c'
+    }">${pnlNominal > 0 ? '+' : ''}${pnlNominal.toFixed(2)} (${pnlPercentage.toFixed(2)}%)</text>` +
     +`</svg>`
   )
 }
