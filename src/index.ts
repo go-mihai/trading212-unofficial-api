@@ -24,7 +24,8 @@ class Trading212 {
   }
 
   from(tickers: Ticker) {
-    this.tickers = [tickers].flat()
+    let uniqueTickers = Array.from(new Set(tickers));
+    this.tickers = [uniqueTickers].flat()
     return this
   }
   timeframe(_period: TIME_PERIOD) {
@@ -93,12 +94,13 @@ class Trading212 {
           maxMin: false,
         }
         const svgString: string = toSvg(element?.response?.candles, _svgOptions)
+        
         result.push(svgString)
       } catch (err) {
         console.error(err)
       }
     })
-    return result
+    return result.join('')
   }
 }
 

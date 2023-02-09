@@ -71,7 +71,7 @@ export default function toSvg(data: CandlesticksDataset, options: SvgOptions) {
     }">${pnlNominal > 0 ? '+' : ''}${pnlNominal.toFixed(2)}</text>` +
     `<text style="font-family:Arial;font-weight:600;font-size:12px" x="4" y="54" fill="${
       pnlPercentage > 0 ? '#2ea82e' : '#ca0c0c'
-    }">(${pnlPercentage.toFixed(2)}%)</text>` +
+    }">(${pnlPercentage.toFixed(2)}%)</text>` 
     +`</svg>`
   )
 }
