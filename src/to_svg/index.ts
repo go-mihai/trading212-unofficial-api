@@ -7,6 +7,7 @@ export default function toSvg(data: CandlesticksDataset, options: SvgOptions) {
   const maximumPrice = data.reduce((currMax, [_, _a, dataY]) => Math.max(currMax, dataY), -Infinity)
   const minimumPrice = data.reduce((currMin, [_, _a, _b, dataY]) => Math.min(currMin, dataY), Infinity)
 
+  // TODO: Not a good solution at all, find another one for setting the margin height.
   const yMax = maximumPrice * 1.0001
   const yMin = minimumPrice * 0.9999
 
