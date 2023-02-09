@@ -17,9 +17,6 @@ class Trading212 {
   companies(){
     return getCompanies();
   }
-  async getCompanies() {
-    return await getCompanies()
-  }
   async getCandles(input: InputGetCandles[] | InputGetCandles) {
     return await getCandles(input)
   }
