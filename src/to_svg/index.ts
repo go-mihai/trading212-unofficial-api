@@ -10,8 +10,8 @@ export default function toSvg(data: CandlesticksDataset, options : SvgOptions) {
   const yMax = maximumPrice * 1.004
   const yMin = minimumPrice * 0.996
 
-  const xMin = 40
-  const xMax = SVG_WIDTH - xMin
+  const xMin = 60
+  const xMax = SVG_WIDTH - xMin + 20
 
   // Define the scale factor for the y-axis
   let yScale = SVG_HEIGHT / (yMax - yMin)
@@ -67,9 +67,12 @@ export default function toSvg(data: CandlesticksDataset, options : SvgOptions) {
       .join('')}` +
     `</g>` +
     `<text style="font-family:Arial;font-weight:bold; font-size:24px" x="4" y="24" fill="#909090">${title}</text>` +
-    `<text style="font-family:Arial;font-weight:600;font-size:13px" x="4" y="48" fill="${
+    `<text style="font-family:Arial;font-weight:600;font-size:12px" x="4" y="40" fill="${
       pnlPercentage > 0 ? '#2ea82e' : '#ca0c0c'
-    }">${pnlNominal > 0 ? '+' : ''}${pnlNominal.toFixed(2)} (${pnlPercentage.toFixed(2)}%)</text>` +
+    }">${pnlNominal > 0 ? '+' : ''}${pnlNominal.toFixed(2)}</text>` +
+    `<text style="font-family:Arial;font-weight:600;font-size:12px" x="4" y="54" fill="${
+      pnlPercentage > 0 ? '#2ea82e' : '#ca0c0c'
+    }">(${pnlPercentage.toFixed(2)}%)</text>` +
     +`</svg>`
   )
 }
