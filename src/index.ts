@@ -67,11 +67,11 @@ class Trading212 {
   }
   currentWeekCandles() {
     this.methodName = getCurrentWeeklyCandles
-    const { period } = this
-    this.options = this.tickers.map((ticker) => ({
+    const { period,tickers } = this
+    this.options = {
       period,
-      ticker,
-    }))
+      ticker: tickers
+    }
     return this
   }
   select() {
