@@ -7,8 +7,9 @@ export default function toSvg(data: CandlesticksDataset, options: SvgOptions) {
   const maximumPrice = data.reduce((currMax, [_, _a, dataY]) => Math.max(currMax, dataY), -Infinity)
   const minimumPrice = data.reduce((currMin, [_, _a, _b, dataY]) => Math.min(currMin, dataY), Infinity)
 
-  const yMax = maximumPrice * 1.004
-  const yMin = minimumPrice * 0.996
+  const yMax = maximumPrice * 1.0001
+  const yMin = minimumPrice * 0.9999
+
 
   const xMin = 60
   const xMax = SVG_WIDTH - xMin + 20
