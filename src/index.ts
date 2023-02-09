@@ -11,7 +11,7 @@ class Trading212 {
   data : any
   options : any
   size: number
-  periodType : TIME_PERIOD
+  period : TIME_PERIOD
 
   constructor(){
     this.tickers = [];
@@ -19,18 +19,17 @@ class Trading212 {
     this.methodName = null;
     this.options = null;
     this.size = 65;
-    this.periodType = 'ONE_DAY';
+    this.period = 'ONE_DAY';
   }
 
   from(tickers: Ticker){
     this.tickers = [tickers].flat();
     return this;
   }
-  period(_periodType : TIME_PERIOD){
-    this.periodType = _periodType;
+  timeframe(_period : TIME_PERIOD){
+    this.period = _period;
     return this;
   }
-  
   limit(size :number){
     if(typeof size !== "number"){
       console.error('Invalid limit! Field must be number (default 65).')
@@ -48,11 +47,17 @@ class Trading212 {
     return this;
   }
   select(){
-    if(this.methodName) return this.methodName(this.options)
-    return null;
+    const {size,period} = this;
+    if(!this.methodName) return null;
+    const options  = this.tickers.map((ticker)  => ({
+      period,
+      size,
+      ticker,
+      useAskPrice : false,
+    }));
+    return this.methodName(options)
   }
   svg(){
-    // return toSvg(this.data);
     return toSvg();
   }
   async getCandles(input: InputGetCandles[] | InputGetCandles) {
