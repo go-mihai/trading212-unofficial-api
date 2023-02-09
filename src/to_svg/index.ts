@@ -26,7 +26,6 @@ export default function toSvg(data: CandlesticksDataset, options : SvgOptions) {
   const pnlNominal = data[data.length - 1][4] - data[0][4]
   const startValue = data[0][4]
   const pnlPercentage = (pnlNominal / startValue) * 100
-  console.log(pnlPercentage);
   const title = options.title;
 
   return (
