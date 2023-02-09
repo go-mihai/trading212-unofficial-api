@@ -8,18 +8,19 @@ export default function toSvg(data: CandlesticksDataset, options: SvgOptions) {
   const minimumPrice = data.reduce((currMin, [_, _a, _b, dataY]) => Math.min(currMin, dataY), Infinity)
 
   // TODO: Not a good solution at all, find another one for setting the margin height.
-  const yMax = maximumPrice * 1.0001
-  const yMin = minimumPrice * 0.9999
+  const yMax = maximumPrice
+  const yMin = minimumPrice
 
 
+  const marginHeight = 30;
   const xMin = 60
-  const xMax = SVG_WIDTH - xMin + 20
-
+  const xMax = SVG_WIDTH - xMin + marginHeight
+  
   // Define the scale factor for the y-axis
-  let yScale = SVG_HEIGHT / (yMax - yMin)
+  let yScale = (SVG_HEIGHT - marginHeight) / (yMax - yMin)
 
   // Define the transform function for the y-axis
-  let yTransform = (value: number) => SVG_HEIGHT - (value - yMin) * yScale
+  let yTransform = (value: number) => (SVG_HEIGHT) - (value - yMin) * yScale
 
   // const numYTicks = 5;
   const barPlotWidth = (xMax - xMin) / data.length
@@ -32,18 +33,22 @@ export default function toSvg(data: CandlesticksDataset, options: SvgOptions) {
 
   return (
     `<svg width="${SVG_WIDTH}" height="${SVG_HEIGHT}" style="border:1px solid gray">` +
-    `<g transform="translate(0, ${SVG_HEIGHT}) scale(1, -1)">` +
-    `<g transform="translate(0, ${SVG_HEIGHT}) scale(1, -1)"><text fill="#ddd" style="font-size:8px" x="${
+    `<g transform="translate(0, ${SVG_HEIGHT + marginHeight/2}) scale(1, -1)">` +
+    `<g transform="translate(0, ${SVG_HEIGHT + marginHeight}) scale(1, -1)"><text fill="#ddd" style="font-size:8px" x="${
       xMax / 2
     }" y="${yTransform(minimumPrice) + 8}"> min ${yMin.toFixed(4)}</text></g>` +
-    `<g transform="translate(0, ${SVG_HEIGHT}) scale(1, -1)"><text fill="#ddd" style="font-size:8px" x="${
+    `<g transform="translate(0, ${SVG_HEIGHT + marginHeight}) scale(1, -1)"><text fill="#ddd" style="font-size:8px" x="${
       xMax / 2
     }" y="${yTransform(maximumPrice) - 2}"> max ${yMax.toFixed(4)}</text></g>` +
+    
+    
     `<line x1="${xMin}" y1="${yTransform(minimumPrice)}" x2="${xMax}" y2="${yTransform(
       minimumPrice,
     )}" stroke="#ddd" /><line x1="${xMin}" y1="${yTransform(maximumPrice)}" x2="${xMax}" y2="${yTransform(
       maximumPrice,
     )}" stroke="#ddd" />` +
+
+
     `${data
       .map(([_, open, high, low, close], index) => {
         let xB = xTransform(index)
@@ -51,7 +56,7 @@ export default function toSvg(data: CandlesticksDataset, options: SvgOptions) {
         let HIGH = yTransform(high)
         let LOW = yTransform(low)
         let CLOSE = yTransform(close)
-        return `<g transform="translate(0, ${SVG_HEIGHT}) scale(1, -1)"> 
+        return `<g transform="translate(0, ${SVG_HEIGHT + marginHeight}) scale(1, -1)"> 
             <line x1="${xB + (barPlotWidth * 0.9) / 2}" y1="${HIGH}" x2="${
           xB + (barPlotWidth * 0.9) / 2
         }" y2="${LOW}" stroke="${OPEN - CLOSE > 0 ? '#1f8a1f' : '#720c00'}" />
