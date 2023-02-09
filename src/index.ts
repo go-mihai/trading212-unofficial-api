@@ -65,6 +65,15 @@ class Trading212 {
     }))
     return this;
   }
+  currentWeekCandles(){
+    this.methodName = getCurrentWeeklyCandles;
+    const {period} = this;
+    this.options = this.tickers.map((ticker) => ({
+      period,
+      ticker,
+    }))
+    return this;
+  }
   select() {
     // TODO : add Error message
     if (!this.methodName) return null
@@ -90,9 +99,6 @@ class Trading212 {
       }
     })
     return result
-  }
-  async getCurrentWeeklyCandles(input: CurrentWeeklyCandles) {
-    return await getCurrentWeeklyCandles(input)
   }
 }
 
