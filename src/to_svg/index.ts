@@ -16,9 +16,8 @@ export default async function toSvg() {
   let yScale = SVG_HEIGHT / (yMax - yMin)
 
   // Define the transform function for the y-axis
-  let yTransform = (value: number) => {
-    return SVG_HEIGHT - (value - yMin) * yScale
-  }
+  let yTransform = (value: number) => SVG_HEIGHT - (value - yMin) * yScale
+  
 
   // const numYTicks = 5;
   const barPlotWidth = (xMax - xMin) / data.length
@@ -33,11 +32,6 @@ export default async function toSvg() {
   return (
     `<svg width="${SVG_WIDTH}" height="${SVG_HEIGHT}" style="border:1px solid gray">` +
     `<g transform="translate(0, ${SVG_HEIGHT}) scale(1, -1)">` +
-    // `<circle cx="${xMin}" cy="${yTransform(yMin)}" r="2" stroke="black" stroke-width="3" fill="red" />` +
-    // `<circle cx="${xMin}" cy="${yTransform(yMax)}" r="2" stroke="black" stroke-width="3" fill="red" />` +
-    // `<circle cx="${xMax}" cy="${yTransform(yMin)}" r="2" stroke="black" stroke-width="3" fill="red" />` +
-    // `<circle cx="${xMax}" cy="${yTransform(yMax)}" r="2" stroke="black" stroke-width="3" fill="red" />` +
-
     `<g transform="translate(0, ${SVG_HEIGHT}) scale(1, -1)"><text fill="#ddd" style="font-size:8px" x="${
       xMax / 2
     }" y="${yTransform(minimumPrice) + 8}"> min ${yMin.toFixed(4)}</text></g>` +
@@ -51,14 +45,12 @@ export default async function toSvg() {
       maximumPrice,
     )}" stroke="#ddd" />` +
     `${data
-      .map(([time, open, high, low, close], index) => {
-        let x = index || time
+      .map(([_, open, high, low, close], index) => {
         let xB = xTransform(index)
         let OPEN = yTransform(open)
         let HIGH = yTransform(high)
         let LOW = yTransform(low)
         let CLOSE = yTransform(close)
-        console.log('high', HIGH, LOW, x)
         return `<g transform="translate(0, ${SVG_HEIGHT}) scale(1, -1)"> 
             <line x1="${xB + (barPlotWidth * 0.9) / 2}" y1="${HIGH}" x2="${
           xB + (barPlotWidth * 0.9) / 2

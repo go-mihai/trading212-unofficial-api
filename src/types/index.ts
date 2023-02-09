@@ -32,3 +32,5 @@ export interface CurrentWeeklyCandles {
   period: TIME_PERIOD
   ticker: string[]
 }
+
+export type Ticker = string | string[];

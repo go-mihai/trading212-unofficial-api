@@ -1,11 +1,22 @@
 import getCandles from './candles'
 import getCompanies from './companies'
 import getCurrentCandle from './current_candle'
-import { CurrentCandle, CurrentWeeklyCandles, InputGetCandles } from './types'
+import { CurrentCandle, CurrentWeeklyCandles, InputGetCandles, Ticker } from './types'
 import getCurrentWeeklyCandles from './current_weekly_candles'
 import toSvg from './to_svg'
 
 class Trading212 {
+  tickers: string[]
+  constructor(){
+    this.tickers = [];
+  }
+  select(tickers: Ticker){
+    this.tickers = [tickers].flat();
+    return this;
+  }
+  companies(){
+    return getCompanies();
+  }
   async getCompanies() {
     return await getCompanies()
   }
