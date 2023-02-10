@@ -1,6 +1,6 @@
 {
   "name": "trading212-unofficial-api",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "An unofficial trading212 API written in typescript.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
