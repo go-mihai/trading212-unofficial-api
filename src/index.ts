@@ -78,7 +78,7 @@ class Trading212 {
   async select() {
     // TODO : add Error message
     if (!this.methodName) return null
-    return  await this.methodName(this.options)
+    return await this.methodName(this.options)
   }
   async svg() {
     // TODO : add Error message
@@ -104,6 +104,4 @@ class Trading212 {
   }
 }
 
-const trading212 = new Trading212()
-
-export default trading212
+export default Trading212

@@ -4,30 +4,32 @@
 
 ### How to use ?
 
-#### Companies/Tickers API
-
-The `trading212.getCompanies` method is used to retrieve a list of companies available for trading on the Trading 212 platform.
+#### Initialize Class
 
 ```js
-import trading212 from 'trading212-unofficial-api';
+const trading212 = new Trading212();
+```
 
-export default async function Companies(){
-    return await trading212.companies().select();
-}
+#### Companies/Tickers API
+
+This method is used to retrieve a list of companies available for trading on the Trading 212 platform.
+
+```js
+import Trading212 from 'trading212-unofficial-api';
+// ...
+const data =  await trading212.companies().select();
 ```
 
 #### Candles API
 
+Current methods for candles :
+- timeframe
+- limit (size) number of candles.
 
 ```js
-import trading212 from 'trading212-unofficial-api';
-
-export default async function Candles(){
-    // getCandles accept an array of inputs 
-    const data = await trading212.from(['MSFT','AAPL']).candles().select();
-    const data2 = await trading212.from(['MSFT','AAPL']).candles().limit(100).select();
-    const data3 = await trading212.from(['MSFT','AAPL']).candles().timeframe('ONE_DAY').limit(50).select()
-}
+const data = await trading212.from(['MSFT','AAPL']).candles().select();
+const data2 = await trading212.from(['MSFT','AAPL']).candles().limit(100).select();
+const data3 = await trading212.from(['MSFT','AAPL']).candles().timeframe('ONE_DAY').limit(50).select()
 ```
 
 
@@ -45,16 +47,11 @@ The method returns a Promise that resolves to an object containing the current c
 
 
 ```js
-import trading212 from 'trading212-unofficial-api';
-
-export default async function CurrentPricesAPI(){
-    // getCurrentPrices accept an array of inputs 
-    const data = await trading212.from(['EURUSD','USDJPY']).currentCandle().select();
-}
+const data = await trading212.from(['EURUSD','USDJPY']).currentCandle().select();
 ```
 
 ### Get Current Weekly Price Candles 
-###### `getCurrentWeeklyCandles`
+###### `currentWeekCandles`
 
 Setting up timeframe is optional, default is Daily.
 
@@ -65,7 +62,7 @@ const data = await trading212.from(['EURUSD','USDJPY']).currentWeekCandles().tim
 
 ### SVG 
 
-We are currently working to improve this method.
+Currently we are working to improve this function.
 
 <img src="/example_svg.webp">
 
