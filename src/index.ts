@@ -4,6 +4,7 @@ import getCurrentCandle from './current_candle'
 import { SvgOptions, Ticker, TIME_PERIOD } from './types'
 import getCurrentWeeklyCandles from './current_weekly_candles'
 import toSvg from './to_svg'
+import BuildSvg from './to_svg/svgclass'
 
 class Trading212 {
   tickers: string[]
@@ -24,7 +25,7 @@ class Trading212 {
   }
 
   from(tickers: Ticker) {
-    let uniqueTickers = Array.from(new Set(tickers));
+    let uniqueTickers = Array.from(new Set(tickers))
     this.tickers = [uniqueTickers].flat()
     return this
   }
@@ -68,10 +69,10 @@ class Trading212 {
   }
   currentWeekCandles() {
     this.methodName = getCurrentWeeklyCandles
-    const { period,tickers } = this
+    const { period, tickers } = this
     this.options = {
       period,
-      ticker: tickers
+      ticker: tickers,
     }
     return this
   }
@@ -80,12 +81,11 @@ class Trading212 {
     if (!this.methodName) return null
     return this.methodName(this.options)
   }
-  // return a list of svg images
   async svg() {
     // TODO : add Error message
     if (!this.methodName) return null
     const data = await this.methodName(this.options)
-    const result: string[] = []
+    const result: any = []
     data?.forEach((element: any) => {
       try {
         const _svgOptions: SvgOptions = {
@@ -93,9 +93,10 @@ class Trading212 {
           labelPnl: true,
           maxMin: false,
         }
-        const svgString: string = toSvg(element?.response?.candles, _svgOptions)
-        
-        result.push(svgString)
+        const svgInstance = new BuildSvg(element?.response?.candles, _svgOptions)
+        // const svgString: string = toSvg(element?.response?.candles, _svgOptions)
+
+        result.push(svgInstance.SVG.join(''))
       } catch (err) {
         console.error(err)
       }
