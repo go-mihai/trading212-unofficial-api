@@ -3,7 +3,6 @@ import getCompanies from './companies'
 import getCurrentCandle from './current_candle'
 import { SvgOptions, Ticker, TIME_PERIOD } from './types'
 import getCurrentWeeklyCandles from './current_weekly_candles'
-import toSvg from './to_svg'
 import BuildSvg from './to_svg/svgclass'
 
 class Trading212 {
@@ -76,10 +75,10 @@ class Trading212 {
     }
     return this
   }
-  select() {
+  async select() {
     // TODO : add Error message
     if (!this.methodName) return null
-    return this.methodName(this.options)
+    return  await this.methodName(this.options)
   }
   async svg() {
     // TODO : add Error message
