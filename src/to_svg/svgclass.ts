@@ -108,6 +108,7 @@ class BuildSvg {
     )
   }
   SVG_setCandlesticks() {
+    /* eslint-disable */
     const self = this
     this.SVG.push(
       `<g transform="translate(0, ${self.height + self.axes.y.margin / 2}) scale(1, -1)">` +
@@ -128,11 +129,11 @@ class BuildSvg {
         )}" x2="${self.axes.x.max}" y2="${self.yTransform(self.axes.y.max)}" stroke="#ddd" />` +
         `${self.data
           .map(([_, open, high, low, close], index) => {
-            let xB = self.xTransform(index)
-            let OPEN = self.yTransform(open)
-            let HIGH = self.yTransform(high)
-            let LOW = self.yTransform(low)
-            let CLOSE = self.yTransform(close)
+            const xB = self.xTransform(index)
+            const OPEN = self.yTransform(open)
+            const HIGH = self.yTransform(high)
+            const LOW = self.yTransform(low)
+            const CLOSE = self.yTransform(close)
             return `<g transform="translate(0, ${self.height + self.axes.y.margin}) scale(1, -1)"> 
                 <line x1="${xB + (self.barPlotWidth * 0.9) / 2}" y1="${HIGH}" x2="${
               xB + (self.barPlotWidth * 0.9) / 2
@@ -149,6 +150,8 @@ class BuildSvg {
           })
           .join('')}` +
         `</g>`,
+
+      /* eslint-enable */
     )
   }
   SVG_setHeader() {

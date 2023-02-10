@@ -7,7 +7,7 @@ import BuildSvg from './to_svg/svgclass'
 
 class Trading212 {
   tickers: string[]
-  methodName: Function | null
+  methodName: any | null
   data: any
   size: number
   period: TIME_PERIOD
@@ -24,7 +24,7 @@ class Trading212 {
   }
 
   from(tickers: Ticker) {
-    let uniqueTickers = Array.from(new Set(tickers))
+    const uniqueTickers = Array.from(new Set(tickers))
     this.tickers = [uniqueTickers].flat()
     return this
   }
@@ -56,7 +56,7 @@ class Trading212 {
     }))
     return this
   }
-  currentCandle(showPreviousPrice: boolean = false) {
+  currentCandle(showPreviousPrice = false) {
     this.methodName = getCurrentCandle
     const { period } = this
     this.options = this.tickers.map((ticker) => ({
