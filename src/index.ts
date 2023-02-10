@@ -84,9 +84,9 @@ class Trading212 {
   async svg() {
     // TODO : add Error message
     if (!this.methodName) return null
-    this.data = await this.methodName(this.options)
+    const data = await this.methodName(this.options)
     const result: string[] = []
-    this.data.forEach((element: any) => {
+    data?.forEach((element: any) => {
       try {
         const _svgOptions: SvgOptions = {
           title: element?.request.ticker,
