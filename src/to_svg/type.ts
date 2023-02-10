@@ -17,4 +17,12 @@ export type Axes = {
     x : XAxes
 }
 
+export type MetaData = {
+    pnl : PNL,
+    title : string
+}
 
+export type PNL = {
+    nominal : number,
+    percentage : number
+}
